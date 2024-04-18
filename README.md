@@ -4,13 +4,14 @@
 
 |To Do|Doing|Done|
 |-|-|-|
-|Overview page|Admin page for managing gvm and psql backend|Replace sqlite with postgresql|
-|             |                                            |Replace ORM with psycopg      |
-|             |                                            |Make API require auth         |
-|             |                                            |Database schema               |
-|             |                                            |Use htmx for frontend         |
-|             |                                            |Devices page                  |
-|             |                                            |Reports page                  |
+|Overview page|Admin page for managing gvm and psql backend|Replace sqlite with postgresql     |
+|             |                                            |Replace ORM with psycopg           |
+|             |                                            |Make API require auth              |
+|             |                                            |Database schema                    |
+|             |                                            |Use htmx for frontend              |
+|             |                                            |Devices page                       |
+|             |                                            |Reports page                       |
+|             |                                            |Nmap Scanning for Network Discovery|
 
 ## Creating updated requirements.txt
 
