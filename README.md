@@ -5,7 +5,7 @@
 |To Do|Doing|Done|
 |-|-|-|
 |Overview page|Admin page for managing gvm and psql backend|Replace sqlite with postgresql     |
-|             |                                            |Replace ORM with psycopg           |
+|             |Discovered IPs Selectable for Scanning      |Replace ORM with psycopg           |
 |             |                                            |Make API require auth              |
 |             |                                            |Database schema                    |
 |             |                                            |Use htmx for frontend              |
