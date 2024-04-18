@@ -1,0 +1,80 @@
+<div id="target-body">
+
+  <div class="column is-6 is-offset-3">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <form class="box" hx-post="/api/create_task" hx-target="#target-body">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">New Scan</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <input class="input" id="name" name="name" type="text" placeholder="Name">
+          </div>
+          <div class="field select">
+            <select id="target" name="target">
+              {% for target in targets %}
+              <option value="{{ target.uuid }}"> {{ target.name }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="field select">
+            <select id="config" name="config">
+              {% for config in configs %}
+              <option value="{{ config[0] }}"> {{ config[1] }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="field select">
+            <select id="scanner" name="scanner">
+              {% for scanner in scanners %}
+              <option value="{{ scanner[0] }}"> {{ scanner[1] }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="field">
+            <button class="button" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    {% for scan in scans %}
+
+    <form class="box" hx-post="/api/start_task">
+      <div class="columns">
+        <div class="column">
+            {{ scan[0].name }}
+        </div>
+        <div class="column">
+            {{ scan[0].target }}
+        </div>
+        <div class="column field is-horizantal">
+          <input type="hidden" name="scan_name" value="{{scan[0].name}}">
+          <input type="hidden" name="scan_target" value="{{scan[0].target}}">
+          <input type="hidden" name="task_id" value="{{scan[0].uuid}}">
+          <div class="field" hx-get="/api/get_task_in_use" hx-trigger="every 5s" hx-vals='{"task_id": "{{scan[0].uuid}}"}'>
+            {% if scan[1] == '1' %}
+            <progress class="progress is-small"></progress>
+            {% endif %}
+            {% if scan[1] == '0' %}
+            <button class="button" type="submit">Submit</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </form>
+
+    {% endfor %}
+
+  </div>
+
+</div>
