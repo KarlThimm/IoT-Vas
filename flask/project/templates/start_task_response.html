@@ -1,0 +1,16 @@
+<div class="columns">
+  <div class="column">
+      {{ scan_name }}
+  </div>
+  <div class="column">
+      {{ scan_target }}
+  </div>
+  <div class="column field is-horizantal">
+    <input type="hidden" name="scan_name" value="{{scan_name}}">
+    <input type="hidden" name="scan_target" value="{{scan_target}}">
+    <input type="hidden" name="task_id" value="{{scan_uuid}}">
+    <div class="field" hx-get="/api/get_task_in_use" hx-trigger="every 5s" hx-vals='{"task_id": "{{scan_uuid}}"}'>
+      <progress class="progress is-small"></progress>
+    </div>
+  </div>
+</div>
